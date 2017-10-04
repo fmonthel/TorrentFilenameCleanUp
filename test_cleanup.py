@@ -1,4 +1,3 @@
-import pytest
 import cleanup as script
 
 def test_string_cleanup() :
