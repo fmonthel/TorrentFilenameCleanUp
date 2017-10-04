@@ -21,21 +21,17 @@ def main() :
     parser = argparse.ArgumentParser(description='Script to clean up filename into directory')
     parser.add_argument('--directory', action='store', dest='dir', default='./torrent')
     args = parser.parse_args()
-
     # Parameters
     time_start = datetime.datetime.now()
     file_config = os.path.join(os.path.dirname(__file__), 'conf/config.ini')
     Config = ConfigParser.ConfigParser(allow_no_value = True)
-    Config.read(file_config)
-    
+    Config.read(file_config)  
     # Extensions in a list
     ext_video = Config.get('EXTENSION','video').split(',')
 	# Word to clean in a list
-    word_toclean = [x[0] for x in Config.items('TOCLEAN')]
-    
+    word_toclean = [x[0] for x in Config.items('TOCLEAN')]  
     # Ascii table
     myAsciiTable = [['Old filename','New filename','Action']]
-
     # Parse directory
     for root, directories, filenames in os.walk(args.dir):
         for filename in filenames :
