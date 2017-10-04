@@ -13,7 +13,6 @@ import argparse
 import ConfigParser
 import re
 import datetime
-import unicodedata
 from terminaltables import AsciiTable
 
 def main() :
@@ -63,7 +62,6 @@ def main() :
                 tmpdata.append('extension not managed - nothing todo')
             # Add tmpdata list to myAsciiTable 
             myAsciiTable.append(tmpdata)
-
     # Parse directory again for cleanup
     for root, directories, filenames in os.walk(args.dir) :
         for directory in directories :
@@ -79,7 +77,6 @@ def main() :
                 tmpdata.append('directory not empty - nothing todo')
             # Add tmpdata list to myAsciiTable 
             myAsciiTable.append(tmpdata)
-
     # Create AsciiTable and total
     tmpdata = list()
     tmpdata.append("Total : " + str(len(myAsciiTable) - 1) + " row(s)")
@@ -87,18 +84,15 @@ def main() :
     myAsciiTable.append(tmpdata)
     myTable = AsciiTable(myAsciiTable)
     myTable.inner_footing_row_border = True
-
     # End script
     time_stop = datetime.datetime.now()
     time_delta = time_stop - time_start
-
     # Output data
     print "######### Date : %s - App : %s #########" % (time_start.strftime("%Y-%m-%d"),Config.get('GLOBAL','application'))
     print "- Start time : %s" % (time_start.strftime("%Y-%m-%d %H:%M:%S"))
     print "- Finish time : %s" % (time_stop.strftime("%Y-%m-%d %H:%M:%S"))
     print "- Delta time : %d second(s)" % (time_delta.total_seconds())
     print myTable.table
-
 
 def filename_cleanup(filename,word_toclean) :
     ''' Clean the filename '''
