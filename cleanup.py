@@ -25,11 +25,11 @@ def main() :
     time_start = datetime.datetime.now()
     file_config = os.path.join(os.path.dirname(__file__), 'conf/config.ini')
     Config = ConfigParser.ConfigParser(allow_no_value = True)
-    Config.read(file_config)  
+    Config.read(file_config)
     # Extensions in a list
     ext_video = Config.get('EXTENSION','video').split(',')
 	# Word to clean in a list
-    word_toclean = [x[0] for x in Config.items('TOCLEAN')]  
+    word_toclean = [x[0] for x in Config.items('TOCLEAN')]
     # Ascii table
     myAsciiTable = [['Old filename','New filename','Action']]
     # Parse directory
@@ -56,7 +56,7 @@ def main() :
             else : # Nothing todo as no extention managed
                 tmpdata.append('')
                 tmpdata.append('extension not managed - nothing todo')
-            # Add tmpdata list to myAsciiTable 
+            # Add tmpdata list to myAsciiTable
             myAsciiTable.append(tmpdata)
     # Parse directory again for cleanup
     for root, directories, filenames in os.walk(args.dir) :
@@ -105,11 +105,11 @@ def filename_cleanup(filename,word_toclean) :
 
 def string_cleanup(string) :
     ''' Clean string '''
-    
+
     # Generic cleaning
     string = re.sub('[^\w\s-]', '-', string.strip(' \t\n\r\.').lower())
     string = re.sub('[-\s]+', '-', string)
-    return string 
+    return string
 
 if __name__ == "__main__":
     main()
