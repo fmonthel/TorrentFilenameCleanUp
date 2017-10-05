@@ -71,7 +71,7 @@ def main() :
                 tmpdata.append('directory deleted as empty')
             else :
                 tmpdata.append('directory not empty - nothing todo')
-            # Add tmpdata list to myAsciiTable 
+            # Add tmpdata list to myAsciiTable
             myAsciiTable.append(tmpdata)
     # Create AsciiTable and total
     tmpdata = list()
